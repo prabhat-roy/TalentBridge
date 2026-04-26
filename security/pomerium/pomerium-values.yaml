@@ -1,0 +1,8 @@
+config:
+  rootDomain: pomerium.talentbridge.internal
+  generateSignedJWT: true
+authenticate:
+  idp:
+    provider: oidc
+    url: https://keycloak.talentbridge.internal
+ingressController: { enabled: true }

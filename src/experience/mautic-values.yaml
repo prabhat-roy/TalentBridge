@@ -1,0 +1,6 @@
+# Mautic — open marketing-automation, repurposed for candidate engagement campaigns
+image: { repository: mautic/mautic, tag: 5-apache }
+mariadb: { enabled: true }
+ingress:
+  enabled: true
+  hosts: [{ host: mautic.talentbridge.internal }]

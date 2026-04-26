@@ -1,0 +1,10 @@
+clusterName: talentbridge.teleport.internal
+authentication:
+  type: github
+  githubConnector:
+    name: github
+    redirectUrl: https://teleport.talentbridge.internal/v1/webapi/github/callback
+kubeClusterName: talentbridge-prod
+ingress:
+  enabled: true
+  hostname: teleport.talentbridge.internal

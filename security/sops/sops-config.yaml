@@ -1,0 +1,7 @@
+creation_rules:
+  - path_regex: secrets/talentbridge/.*\.yaml
+    kms: arn:aws:kms:us-east-1:111111111111:alias/talentbridge-sops
+  - path_regex: secrets/talentbridge/gcp/.*\.yaml
+    gcp_kms: projects/talentbridge-prod/locations/global/keyRings/talentbridge/cryptoKeys/sops
+  - path_regex: secrets/talentbridge/azure/.*\.yaml
+    azure_keyvault: https://talentbridge-kv.vault.azure.net/keys/sops/abc123
