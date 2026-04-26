@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ats-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: ats-service, talentbridge.io/domain: recruitment }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50061, targetPort: 50061 }]
+  selector: { app.kubernetes.io/name: ats-service }

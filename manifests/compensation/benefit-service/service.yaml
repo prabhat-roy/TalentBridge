@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: benefit-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: benefit-service, talentbridge.io/domain: compensation }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50181, targetPort: 50181 }]
+  selector: { app.kubernetes.io/name: benefit-service }

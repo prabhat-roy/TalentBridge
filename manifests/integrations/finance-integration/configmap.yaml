@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finance-integration
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: finance-integration, talentbridge.io/domain: integrations }
+data:
+  LOG_LEVEL: info
+  PORT: "50321"

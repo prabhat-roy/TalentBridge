@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: recognition-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: recognition-service, talentbridge.io/domain: experience }
+data:
+  LOG_LEVEL: info
+  PORT: "50222"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nps-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: nps-service, talentbridge.io/domain: experience }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50224, targetPort: 50224 }]
+  selector: { app.kubernetes.io/name: nps-service }

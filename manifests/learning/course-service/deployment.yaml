@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: course-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: learning
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: course-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: course-service, talentbridge.io/domain: learning }
+    spec:
+      serviceAccountName: course-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: course-service
+          image: harbor.talentbridge.internal/talentbridge/course-service:latest
+          ports: [{ containerPort: 50161, name: http }]
+          envFrom: [{ configMapRef: { name: course-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50161 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50161 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

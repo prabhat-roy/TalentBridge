@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: org-design
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: org-design, talentbridge.io/domain: workforce-planning }
+data:
+  LOG_LEVEL: info
+  PORT: "50203"

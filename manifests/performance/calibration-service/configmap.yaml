@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: calibration-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: calibration-service, talentbridge.io/domain: performance }
+data:
+  LOG_LEVEL: info
+  PORT: "50143"

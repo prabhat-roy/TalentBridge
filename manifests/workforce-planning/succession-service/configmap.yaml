@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: succession-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: succession-service, talentbridge.io/domain: workforce-planning }
+data:
+  LOG_LEVEL: info
+  PORT: "50202"

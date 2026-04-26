@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: knowledge-transfer
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: knowledge-transfer, talentbridge.io/domain: offboarding }
+data:
+  LOG_LEVEL: info
+  PORT: "50242"

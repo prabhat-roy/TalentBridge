@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clearance-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: clearance-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: offboarding
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: clearance-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: clearance-service, talentbridge.io/domain: offboarding }
+    spec:
+      serviceAccountName: clearance-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: clearance-service
+          image: harbor.talentbridge.internal/talentbridge/clearance-service:latest
+          ports: [{ containerPort: 50241, name: http }]
+          envFrom: [{ configMapRef: { name: clearance-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50241 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50241 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

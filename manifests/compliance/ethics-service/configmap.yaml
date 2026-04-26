@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ethics-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: ethics-service, talentbridge.io/domain: compliance }
+data:
+  LOG_LEVEL: info
+  PORT: "50264"

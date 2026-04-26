@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mfa-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: mfa-service, talentbridge.io/domain: identity }
+data:
+  LOG_LEVEL: info
+  PORT: "50022"

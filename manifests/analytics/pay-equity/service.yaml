@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pay-equity
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: pay-equity, talentbridge.io/domain: analytics }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50303, targetPort: 50303 }]
+  selector: { app.kubernetes.io/name: pay-equity }

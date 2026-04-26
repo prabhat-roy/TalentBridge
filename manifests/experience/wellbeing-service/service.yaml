@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wellbeing-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: wellbeing-service, talentbridge.io/domain: experience }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50223, targetPort: 50223 }]
+  selector: { app.kubernetes.io/name: wellbeing-service }

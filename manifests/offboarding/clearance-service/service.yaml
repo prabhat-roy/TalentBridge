@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clearance-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: clearance-service, talentbridge.io/domain: offboarding }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50241, targetPort: 50241 }]
+  selector: { app.kubernetes.io/name: clearance-service }

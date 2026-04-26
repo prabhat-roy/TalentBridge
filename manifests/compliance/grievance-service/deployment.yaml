@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grievance-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: grievance-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: compliance
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: grievance-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: grievance-service, talentbridge.io/domain: compliance }
+    spec:
+      serviceAccountName: grievance-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: grievance-service
+          image: harbor.talentbridge.internal/talentbridge/grievance-service:latest
+          ports: [{ containerPort: 50263, name: http }]
+          envFrom: [{ configMapRef: { name: grievance-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50263 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50263 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

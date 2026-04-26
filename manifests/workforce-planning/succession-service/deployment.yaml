@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: succession-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: succession-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: workforce-planning
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: succession-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: succession-service, talentbridge.io/domain: workforce-planning }
+    spec:
+      serviceAccountName: succession-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: succession-service
+          image: harbor.talentbridge.internal/talentbridge/succession-service:latest
+          ports: [{ containerPort: 50202, name: http }]
+          envFrom: [{ configMapRef: { name: succession-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50202 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50202 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

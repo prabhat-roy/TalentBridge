@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: skill-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: skill-service, talentbridge.io/domain: learning }
+data:
+  LOG_LEVEL: info
+  PORT: "50163"

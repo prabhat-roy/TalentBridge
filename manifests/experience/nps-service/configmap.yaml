@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nps-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: nps-service, talentbridge.io/domain: experience }
+data:
+  LOG_LEVEL: info
+  PORT: "50224"

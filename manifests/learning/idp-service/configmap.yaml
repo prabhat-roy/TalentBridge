@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: idp-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: idp-service, talentbridge.io/domain: learning }
+data:
+  LOG_LEVEL: info
+  PORT: "50164"

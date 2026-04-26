@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ethics-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: ethics-service, talentbridge.io/domain: compliance }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50264, targetPort: 50264 }]
+  selector: { app.kubernetes.io/name: ethics-service }

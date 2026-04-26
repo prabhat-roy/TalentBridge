@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: org-design
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: org-design, talentbridge.io/domain: workforce-planning }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50203, targetPort: 50203 }]
+  selector: { app.kubernetes.io/name: org-design }

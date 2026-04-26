@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pay-equity
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: pay-equity, talentbridge.io/domain: analytics }
+data:
+  LOG_LEVEL: info
+  PORT: "50303"

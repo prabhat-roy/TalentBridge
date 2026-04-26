@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alumni-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: alumni-service, talentbridge.io/domain: offboarding }
+data:
+  LOG_LEVEL: info
+  PORT: "50243"

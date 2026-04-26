@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: background-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: background-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: integrations
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: background-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: background-service, talentbridge.io/domain: integrations }
+    spec:
+      serviceAccountName: background-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: background-service
+          image: harbor.talentbridge.internal/talentbridge/background-service:latest
+          ports: [{ containerPort: 50323, name: http }]
+          envFrom: [{ configMapRef: { name: background-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50323 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50323 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

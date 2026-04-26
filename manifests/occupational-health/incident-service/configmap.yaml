@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: incident-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: incident-service, talentbridge.io/domain: occupational-health }
+data:
+  LOG_LEVEL: info
+  PORT: "50281"

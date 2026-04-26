@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nps-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: nps-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: experience
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: nps-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: nps-service, talentbridge.io/domain: experience }
+    spec:
+      serviceAccountName: nps-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: nps-service
+          image: harbor.talentbridge.internal/talentbridge/nps-service:latest
+          ports: [{ containerPort: 50224, name: http }]
+          envFrom: [{ configMapRef: { name: nps-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50224 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50224 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

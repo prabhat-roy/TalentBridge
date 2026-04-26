@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: feedback-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: feedback-service, talentbridge.io/domain: performance }
+data:
+  LOG_LEVEL: info
+  PORT: "50142"

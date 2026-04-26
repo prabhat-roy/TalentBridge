@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: total-reward
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: total-reward
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: compensation
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: total-reward } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: total-reward, talentbridge.io/domain: compensation }
+    spec:
+      serviceAccountName: total-reward
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: total-reward
+          image: harbor.talentbridge.internal/talentbridge/total-reward:latest
+          ports: [{ containerPort: 50183, name: http }]
+          envFrom: [{ configMapRef: { name: total-reward } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50183 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50183 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clearance-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: clearance-service, talentbridge.io/domain: offboarding }
+data:
+  LOG_LEVEL: info
+  PORT: "50241"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alumni-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: alumni-service, talentbridge.io/domain: offboarding }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50243, targetPort: 50243 }]
+  selector: { app.kubernetes.io/name: alumni-service }

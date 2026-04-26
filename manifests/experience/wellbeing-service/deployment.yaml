@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wellbeing-service
+  namespace: talentbridge
+  labels:
+    app.kubernetes.io/name: wellbeing-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: experience
+spec:
+  replicas: 2
+  selector: { matchLabels: { app.kubernetes.io/name: wellbeing-service } }
+  template:
+    metadata:
+      labels: { app.kubernetes.io/name: wellbeing-service, talentbridge.io/domain: experience }
+    spec:
+      serviceAccountName: wellbeing-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: wellbeing-service
+          image: harbor.talentbridge.internal/talentbridge/wellbeing-service:latest
+          ports: [{ containerPort: 50223, name: http }]
+          envFrom: [{ configMapRef: { name: wellbeing-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50223 }, initialDelaySeconds: 15 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50223 }, initialDelaySeconds: 5 }
+          resources:
+            requests: { cpu: 100m, memory: 128Mi }
+            limits:   { cpu: 1000m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

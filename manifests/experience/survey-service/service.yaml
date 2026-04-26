@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: survey-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: survey-service, talentbridge.io/domain: experience }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50221, targetPort: 50221 }]
+  selector: { app.kubernetes.io/name: survey-service }

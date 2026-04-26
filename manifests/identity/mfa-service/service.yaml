@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mfa-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: mfa-service, talentbridge.io/domain: identity }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50022, targetPort: 50022 }]
+  selector: { app.kubernetes.io/name: mfa-service }
