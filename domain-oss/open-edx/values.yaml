@@ -1,0 +1,3 @@
+﻿# Open edX — internal learning platform
+image: { repository: openedx/openedx, tag: olive.4 }
+openedx: { tutor: { enabled: true } }

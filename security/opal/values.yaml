@@ -1,0 +1,6 @@
+﻿# OPAL — Open Policy Administration Layer for OPA
+image: { repository: permitio/opal-server, tag: latest }
+opal:
+  policySource: { type: git, url: "https://github.com/talentbridge/policies", branch: main }
+  dataSources: [{ url: "http://config-service.talentbridge.svc/policy-data", topics: ["policy_data"] }]
+clients: { autoStart: true }

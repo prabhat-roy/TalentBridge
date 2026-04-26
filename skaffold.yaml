@@ -1,0 +1,16 @@
+﻿# Skaffold pipeline for TalentBridge
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata: { name: talentbridge }
+build:
+  artifacts:
+    - { image: talentbridge/api-gateway, context: src/api-gateway }
+    - { image: talentbridge/identity-service, context: src/identity-service }
+  local: { push: false }
+deploy:
+  helm:
+    releases:
+      - { name: api-gateway, chartPath: helm/charts/api-gateway, namespace: talentbridge }
+profiles:
+  - name: prod
+    deploy: { kubectl: { manifests: ["manifests/prod/*.yaml"] } }

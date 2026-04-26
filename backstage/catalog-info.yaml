@@ -1,0 +1,9 @@
+﻿apiVersion: backstage.io/v1alpha1
+kind: System
+metadata: { name: talentbridge, description: TalentBridge enterprise platform }
+spec: { owner: platform-team, domain: talentbridge }
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata: { name: talentbridge }
+spec: { owner: platform-team }

@@ -1,0 +1,2 @@
+﻿# Lightcast Open Skills — open skills taxonomy ingester
+lightcast: { ingest: { enabled: true, schedule: monthly }, output: { neo4j: { enabled: true } } }

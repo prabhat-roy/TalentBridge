@@ -1,0 +1,5 @@
+﻿# Daytona workspace template for TalentBridge
+name: talentbridge
+repositoryUrl: https://github.com/prabhat-roy/TalentBridge
+image: ghcr.io/devcontainers/images/universal:2
+ports: [{ port: 3000, protocol: HTTP }, { port: 8080, protocol: HTTP }]

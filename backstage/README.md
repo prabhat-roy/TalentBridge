@@ -1,6 +1,4 @@
-# Backstage — TalentBridge
+﻿# Backstage — Developer Portal for TalentBridge
 
-Developer portal — Backstage catalog, TechDocs, plugins.
-
-> Skeleton placeholder. Content will be added as the project takes shape.
-> See [../README.md](../README.md) for the TalentBridge project overview.
+Self-hosted Spotify Backstage. Service catalog, TechDocs, software templates, scorecards.
+Run: `yarn install && yarn dev`. Upstream: https://github.com/backstage/backstage

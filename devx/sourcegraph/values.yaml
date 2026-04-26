@@ -1,0 +1,6 @@
+﻿# Sourcegraph (OSS) — universal code search across TalentBridge
+image: { repository: sourcegraph/server, tag: 5.5.0 }
+sourcegraph:
+  externalURL: https://sourcegraph.talentbridge.internal
+  repositoriesToAdd: [github.com/prabhat-roy/TalentBridge]
+ingress: { enabled: true, hosts: [{ host: sourcegraph.talentbridge.internal }] }

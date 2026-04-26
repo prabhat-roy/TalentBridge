@@ -1,0 +1,9 @@
+﻿{
+  "defaults": { "standard": "WCAG2AA", "timeout": 30000, "concurrency": 4, "chromeLaunchConfig": { "args": ["--no-sandbox"] } },
+  "urls": [
+    "https://www.talentbridge.internal/",
+    "https://www.talentbridge.internal/about",
+    "https://app.talentbridge.internal/login",
+    "https://app.talentbridge.internal/dashboard"
+  ]
+}
