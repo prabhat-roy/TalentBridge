@@ -1,0 +1,19 @@
+{
+  "name": "buddy-service",
+  "version": "0.1.0",
+  "description": "Buddy assignment, check-ins",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "vitest"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "fastify": "^5.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}
