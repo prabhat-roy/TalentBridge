@@ -1,0 +1,7 @@
+apiVersion: v2
+name: document-service
+description: Encrypted document vault (contracts, payslips) — MinIO/S3, AES-256
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

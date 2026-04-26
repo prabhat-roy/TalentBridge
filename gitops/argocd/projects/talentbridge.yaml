@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata: { name: talentbridge, namespace: argocd }
+spec:
+  description: TalentBridge HCM platform applications
+  sourceRepos:
+    - https://github.com/prabhat-roy/TalentBridge.git
+  destinations:
+    - { namespace: talentbridge, server: '*' }
+    - { namespace: talentbridge-*, server: '*' }
+  clusterResourceWhitelist:
+    - { group: '*', kind: '*' }
+  namespaceResourceWhitelist:
+    - { group: '*', kind: '*' }

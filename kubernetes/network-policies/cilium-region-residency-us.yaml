@@ -1,0 +1,17 @@
+# Applied ONLY to US clusters (us-east-1 / us-east4 / eastus).
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: tb-us-pii-residency
+  labels: { talentbridge.io/region: us, talentbridge.io/policy: residency }
+spec:
+  endpointSelector:
+    matchLabels:
+      talentbridge.io/data-class: employee-pii
+  egress:
+    - toCIDRSet:
+        - cidr: 10.42.0.0/16    # AWS us-east-1 VPC
+        - cidr: 10.52.0.0/16    # GCP us-east4 subnet
+        - cidr: 10.72.0.0/16    # Azure eastus vnet
+    - toEndpoints: [{ matchLabels: { k8s-app: kube-dns, io.kubernetes.pod.namespace: kube-system } }]
+      toPorts: [{ ports: [{ port: "53", protocol: UDP }] }]

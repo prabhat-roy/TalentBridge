@@ -1,0 +1,10 @@
+apiVersion: v2
+name: employee-bff
+description: Backend-for-frontend for Employee Self-Service (React)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+  - name: lib-talentbridge
+    version: 0.1.0
+    repository: file://../_lib-talentbridge

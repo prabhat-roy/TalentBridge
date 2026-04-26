@@ -1,0 +1,33 @@
+rules:
+  - id: payroll-money-must-use-bigdecimal-java
+    message: "Money in payroll must be BigDecimal, not double/float."
+    severity: ERROR
+    languages: [java, kotlin]
+    pattern-either:
+      - pattern: |
+          double $X = ...;
+      - pattern: |
+          float $X = ...;
+      - pattern: |
+          Double $X = ...;
+      - pattern: |
+          Float $X = ...;
+    paths: { include: ["src/payroll/**", "src/compensation/**"] }
+
+  - id: payroll-money-must-use-decimal-python
+    message: "Money in payroll must be decimal.Decimal, not float."
+    severity: ERROR
+    languages: [python]
+    pattern: |
+      $X: float = ...
+    paths: { include: ["src/payroll/**", "src/compensation/**"] }
+
+  - id: pii-must-not-cross-region
+    message: "Cross-region call from PII service detected — check residency policy."
+    severity: ERROR
+    languages: [go, java, kotlin, python, javascript]
+    pattern-either:
+      - pattern: 'http.Get("https://*.eu-west-1.*")'
+      - pattern: 'http.Get("https://*.ap-south-1.*")'
+      - pattern: 'http.Get("https://*.us-east-1.*")'
+    paths: { include: ["src/core-hr/**", "src/payroll/**", "src/compensation/**"] }

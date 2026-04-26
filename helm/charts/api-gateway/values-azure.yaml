@@ -1,0 +1,21 @@
+# Azure overlay for api-gateway. Multi-region:
+# - westeurope (EU)
+# - centralindia (India)
+# - eastus (US)
+cloud:
+  provider: azure
+  storageClass: managed-csi
+  ingressClass: azure-application-gateway
+
+region: westeurope
+
+serviceAccount:
+  annotations:
+    azure.workload.identity/client-id: "{{ .Values.azure.clientId }}"
+
+podLabels:
+  azure.workload.identity/use: "true"
+
+envFrom:
+  - secretRef:
+      name: api-gateway-azure-secrets

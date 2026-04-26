@@ -1,0 +1,7 @@
+apiVersion: v2
+name: disbursement-service
+description: Bank-file generation, NEFT/SEPA/ACH/WPS payouts (blue-green deploy only)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

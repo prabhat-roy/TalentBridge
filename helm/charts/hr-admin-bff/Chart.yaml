@@ -1,0 +1,7 @@
+apiVersion: v2
+name: hr-admin-bff
+description: BFF for HR Admin (Angular)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

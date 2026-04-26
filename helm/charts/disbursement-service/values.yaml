@@ -1,0 +1,21 @@
+image: { repository: talentbridge/disbursement-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 3
+domain: payroll
+service: { type: ClusterIP, port: 50504, targetPort: 50504 }
+resources: { requests: { cpu: 300m, memory: 512Mi }, limits: { cpu: 2000m, memory: 2Gi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50504 }, initialDelaySeconds: 30, periodSeconds: 20 }
+  readiness: { httpGet: { path: /healthz, port: 50504 }, initialDelaySeconds: 10, periodSeconds: 10 }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: disbursement-service, app.kubernetes.io/part-of: talentbridge, talentbridge.io/domain: payroll, talentbridge.io/deployment-strategy: blue-green, talentbridge.io/data-class: payroll-pii }
+podAnnotations: {}
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000, seccompProfile: { type: RuntimeDefault } }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env:
+  - { name: MONEY_TYPE, value: BigDecimal }
+  - { name: PAYOUT_RAILS, value: "NEFT,SEPA,ACH,WPS,FPS" }
+envFrom: []
+config: { LOG_LEVEL: info }
+region: ""
+dataResidencyClass: pii-regional-strict
+cloud: { provider: "", storageClass: "", ingressClass: "" }

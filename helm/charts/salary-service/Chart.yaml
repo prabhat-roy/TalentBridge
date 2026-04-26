@@ -1,0 +1,7 @@
+apiVersion: v2
+name: salary-service
+description: Salary master & versioned salary records (BigDecimal)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

@@ -1,0 +1,4 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: api-gateway, namespace: talentbridge, labels: { app.kubernetes.io/name: api-gateway, talentbridge.io/domain: platform } }
+data: { LOG_LEVEL: info, PORT: "50000" }

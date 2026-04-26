@@ -1,0 +1,7 @@
+apiVersion: v2
+name: rbac-service
+description: Role/permission service (employee, manager, hr-admin, payroll-admin, auditor)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

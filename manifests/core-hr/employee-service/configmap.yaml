@@ -1,0 +1,4 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: employee-service, namespace: talentbridge-core-hr }
+data: { LOG_LEVEL: info, PORT: "50200" }

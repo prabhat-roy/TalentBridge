@@ -1,0 +1,3 @@
+resource "google_storage_bucket" "documents_eu" { provider = google.eu  name = "talentbridge-eu-${var.environment}-documents"  location = var.region_eu  uniform_bucket_level_access = true  versioning { enabled = true }  force_destroy = false }
+resource "google_storage_bucket" "documents_in" { provider = google.in  name = "talentbridge-in-${var.environment}-documents"  location = var.region_in  uniform_bucket_level_access = true  versioning { enabled = true }  force_destroy = false }
+resource "google_storage_bucket" "documents_us" { provider = google.us  name = "talentbridge-us-${var.environment}-documents"  location = var.region_us  uniform_bucket_level_access = true  versioning { enabled = true }  force_destroy = false }

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: mfa-service
+description: TOTP/WebAuthn/Push MFA for HR admins (mandatory) and managers
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

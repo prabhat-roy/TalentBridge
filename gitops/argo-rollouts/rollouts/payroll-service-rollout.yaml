@@ -1,0 +1,22 @@
+# Payroll uses BLUE-GREEN with manual promotion only — never canary.
+# A failed payroll run cannot be partially rolled back; full dry-run required.
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata: { name: payroll-service, namespace: talentbridge }
+spec:
+  replicas: 4
+  strategy:
+    blueGreen:
+      activeService: payroll-service-active
+      previewService: payroll-service-preview
+      autoPromotionEnabled: false           # MANUAL gate — see runbook
+      scaleDownDelaySeconds: 600
+      prePromotionAnalysis:
+        templates: [{ templateName: talentbridge-canary-analysis }]
+        args: [{ name: service-name, value: payroll-service-preview }]
+  selector: { matchLabels: { app.kubernetes.io/name: payroll-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: payroll-service, talentbridge.io/data-class: payroll-pii } }
+    spec:
+      containers:
+        - { name: payroll-service, image: harbor.talentbridge.internal/talentbridge/payroll-service, ports: [{ containerPort: 50500 }], env: [{ name: MONEY_TYPE, value: BigDecimal }] }

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: equipment-service
+description: IT equipment provisioning (laptop/badge/access)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

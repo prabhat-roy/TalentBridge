@@ -1,0 +1,7 @@
+apiVersion: v2
+name: review-service
+description: Performance reviews and 360s
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

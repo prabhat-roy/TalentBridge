@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Service
+metadata: { name: payroll-service, namespace: talentbridge-payroll, labels: { app.kubernetes.io/name: payroll-service, talentbridge.io/domain: payroll } }
+spec:
+  type: ClusterIP
+  ports: [{ name: http, port: 50500, targetPort: 50500 }]
+  selector: { app.kubernetes.io/name: payroll-service }

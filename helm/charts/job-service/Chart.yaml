@@ -1,0 +1,7 @@
+apiVersion: v2
+name: job-service
+description: Job catalogue, job families, job grades
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

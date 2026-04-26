@@ -1,0 +1,8 @@
+resource "azurerm_storage_account" "documents_eu" { name = "tbdocs${var.environment}eu"  resource_group_name = azurerm_resource_group.eu.name  location = azurerm_resource_group.eu.location  account_tier = "Standard"  account_replication_type = "ZRS"  account_kind = "StorageV2"  is_hns_enabled = true  min_tls_version = "TLS1_2"  blob_properties { versioning_enabled = true  delete_retention_policy { days = 30 } } }
+resource "azurerm_storage_container" "documents_eu" { name = "documents"  storage_account_id = azurerm_storage_account.documents_eu.id  container_access_type = "private" }
+
+resource "azurerm_storage_account" "documents_in" { name = "tbdocs${var.environment}in"  resource_group_name = azurerm_resource_group.in.name  location = azurerm_resource_group.in.location  account_tier = "Standard"  account_replication_type = "ZRS"  account_kind = "StorageV2"  is_hns_enabled = true  min_tls_version = "TLS1_2"  blob_properties { versioning_enabled = true  delete_retention_policy { days = 30 } } }
+resource "azurerm_storage_container" "documents_in" { name = "documents"  storage_account_id = azurerm_storage_account.documents_in.id  container_access_type = "private" }
+
+resource "azurerm_storage_account" "documents_us" { name = "tbdocs${var.environment}us"  resource_group_name = azurerm_resource_group.us.name  location = azurerm_resource_group.us.location  account_tier = "Standard"  account_replication_type = "ZRS"  account_kind = "StorageV2"  is_hns_enabled = true  min_tls_version = "TLS1_2"  blob_properties { versioning_enabled = true  delete_retention_policy { days = 30 } } }
+resource "azurerm_storage_container" "documents_us" { name = "documents"  storage_account_id = azurerm_storage_account.documents_us.id  container_access_type = "private" }

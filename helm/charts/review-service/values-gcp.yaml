@@ -1,0 +1,4 @@
+cloud: { provider: gcp, storageClass: pd-balanced, ingressClass: gce }
+region: europe-west4
+serviceAccount: { annotations: { iam.gke.io/gcp-service-account: talentbridge-review-service@{{ .Values.gcp.project }}.iam.gserviceaccount.com } }
+envFrom: [{ secretRef: { name: review-service-gcp-secrets } }]

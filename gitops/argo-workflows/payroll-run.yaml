@@ -1,0 +1,29 @@
+# Argo Workflow that orchestrates a single monthly payroll run for one country.
+# Steps mirror the Saga: calc -> review -> approve -> disburse -> reconcile.
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata: { name: talentbridge-payroll-run, namespace: argo }
+spec:
+  entrypoint: payroll-run
+  arguments: { parameters: [{ name: country }, { name: pay-period }, { name: region }] }
+  templates:
+    - name: payroll-run
+      steps:
+        - - { name: dry-run,    template: dry-run-step }
+        - - { name: calculate,  template: calc-step }
+        - - { name: review,     template: review-step }
+        - - { name: approve,    template: approve-step }
+        - - { name: disburse,   template: disburse-step }
+        - - { name: reconcile,  template: reconcile-step }
+    - name: dry-run-step
+      container: { image: talentbridge/payroll-cli:latest, command: ["payroll","dry-run","--country","{{workflow.parameters.country}}","--period","{{workflow.parameters.pay-period}}"] }
+    - name: calc-step
+      container: { image: talentbridge/payroll-cli:latest, command: ["payroll","calc"] }
+    - name: review-step
+      container: { image: talentbridge/payroll-cli:latest, command: ["payroll","review"] }
+    - name: approve-step
+      container: { image: talentbridge/payroll-cli:latest, command: ["payroll","approve"] }
+    - name: disburse-step
+      container: { image: talentbridge/payroll-cli:latest, command: ["payroll","disburse"] }
+    - name: reconcile-step
+      container: { image: talentbridge/payroll-cli:latest, command: ["payroll","reconcile"] }

@@ -1,0 +1,15 @@
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: api-gateway, namespace: talentbridge }
+spec: { minAvailable: 2, selector: { matchLabels: { app.kubernetes.io/name: api-gateway } } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: payroll-service, namespace: talentbridge }
+spec: { minAvailable: 3, selector: { matchLabels: { app.kubernetes.io/name: payroll-service } } }
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: { name: employee-service, namespace: talentbridge }
+spec: { minAvailable: 2, selector: { matchLabels: { app.kubernetes.io/name: employee-service } } }

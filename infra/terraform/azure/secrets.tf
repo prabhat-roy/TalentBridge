@@ -1,0 +1,10 @@
+data "azurerm_client_config" "current" {}
+
+resource "azurerm_key_vault" "eu" { name = "tb-kv-eu-${var.environment}"  resource_group_name = azurerm_resource_group.eu.name  location = azurerm_resource_group.eu.location  tenant_id = data.azurerm_client_config.current.tenant_id  sku_name = "premium"  purge_protection_enabled = true  soft_delete_retention_days = 90  enable_rbac_authorization = true  network_acls { default_action = "Deny"  bypass = "AzureServices"  virtual_network_subnet_ids = [azurerm_subnet.aks_eu.id, azurerm_subnet.data_eu.id] } }
+resource "azurerm_key_vault_secret" "pg_eu" { name = "postgres-admin-password"  value = random_password.pg_eu.result  key_vault_id = azurerm_key_vault.eu.id }
+
+resource "azurerm_key_vault" "in" { name = "tb-kv-in-${var.environment}"  resource_group_name = azurerm_resource_group.in.name  location = azurerm_resource_group.in.location  tenant_id = data.azurerm_client_config.current.tenant_id  sku_name = "premium"  purge_protection_enabled = true  soft_delete_retention_days = 90  enable_rbac_authorization = true  network_acls { default_action = "Deny"  bypass = "AzureServices"  virtual_network_subnet_ids = [azurerm_subnet.aks_in.id, azurerm_subnet.data_in.id] } }
+resource "azurerm_key_vault_secret" "pg_in" { name = "postgres-admin-password"  value = random_password.pg_in.result  key_vault_id = azurerm_key_vault.in.id }
+
+resource "azurerm_key_vault" "us" { name = "tb-kv-us-${var.environment}"  resource_group_name = azurerm_resource_group.us.name  location = azurerm_resource_group.us.location  tenant_id = data.azurerm_client_config.current.tenant_id  sku_name = "premium"  purge_protection_enabled = true  soft_delete_retention_days = 90  enable_rbac_authorization = true  network_acls { default_action = "Deny"  bypass = "AzureServices"  virtual_network_subnet_ids = [azurerm_subnet.aks_us.id, azurerm_subnet.data_us.id] } }
+resource "azurerm_key_vault_secret" "pg_us" { name = "postgres-admin-password"  value = random_password.pg_us.result  key_vault_id = azurerm_key_vault.us.id }

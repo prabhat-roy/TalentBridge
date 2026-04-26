@@ -1,0 +1,17 @@
+# Payroll & disbursement may only deploy via Argo Rollout with blueGreen strategy.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata: { name: payroll-blue-green-only }
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: payroll-must-be-bluegreen
+      match:
+        any: [{ resources: { kinds: [Rollout], names: ["payroll-service","disbursement-service"] } }]
+      validate:
+        message: "payroll-service / disbursement-service must use blueGreen strategy with autoPromotionEnabled=false"
+        pattern:
+          spec:
+            strategy:
+              blueGreen:
+                autoPromotionEnabled: "false"

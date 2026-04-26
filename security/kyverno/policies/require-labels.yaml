@@ -1,0 +1,28 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata: { name: require-talentbridge-labels }
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: check-required-labels
+      match:
+        any: [{ resources: { kinds: [Deployment, StatefulSet, Rollout] } }]
+      validate:
+        message: "missing required labels: app.kubernetes.io/name, talentbridge.io/domain"
+        pattern:
+          metadata:
+            labels:
+              app.kubernetes.io/name: "?*"
+              talentbridge.io/domain: "?*"
+    - name: pii-pods-must-have-region-label
+      match:
+        any: [{ resources: { kinds: [Pod, Deployment] } }]
+      preconditions:
+        all:
+          - { key: '{{ request.object.metadata.labels."talentbridge.io/data-class" || "" }}', operator: Equals, value: employee-pii }
+      validate:
+        message: "PII workloads must declare talentbridge.io/employee-region (eu|in|us)"
+        pattern:
+          metadata:
+            labels:
+              talentbridge.io/employee-region: "eu|in|us"

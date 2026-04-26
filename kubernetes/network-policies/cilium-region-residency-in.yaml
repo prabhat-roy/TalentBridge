@@ -1,0 +1,17 @@
+# Applied ONLY to India clusters (ap-south-1 / asia-south1 / centralindia).
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: tb-in-pii-residency
+  labels: { talentbridge.io/region: in, talentbridge.io/policy: residency }
+spec:
+  endpointSelector:
+    matchLabels:
+      talentbridge.io/data-class: employee-pii
+  egress:
+    - toCIDRSet:
+        - cidr: 10.41.0.0/16    # AWS ap-south-1 VPC
+        - cidr: 10.51.0.0/16    # GCP asia-south1 subnet
+        - cidr: 10.71.0.0/16    # Azure centralindia vnet
+    - toEndpoints: [{ matchLabels: { k8s-app: kube-dns, io.kubernetes.pod.namespace: kube-system } }]
+      toPorts: [{ ports: [{ port: "53", protocol: UDP }] }]

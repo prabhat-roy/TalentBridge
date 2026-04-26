@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata: { name: talentbridge-gcp, namespace: argocd }
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/prabhat-roy/TalentBridge.git
+              revision: HEAD
+              directories:
+                - path: helm/charts/*
+                - path: helm/charts/_*
+                  exclude: true
+          - list:
+              elements:
+                - { region: eu, cluster: 'https://gke-eu.talentbridge.internal' }
+                - { region: in, cluster: 'https://gke-in.talentbridge.internal' }
+                - { region: us, cluster: 'https://gke-us.talentbridge.internal' }
+  template:
+    metadata:
+      name: '{{path.basename}}-gcp-{{region}}'
+      labels: { cloud: gcp, region: '{{region}}', talentbridge.io/managed-by: argocd }
+    spec:
+      project: talentbridge
+      source:
+        repoURL: https://github.com/prabhat-roy/TalentBridge.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles: [values.yaml, values-gcp.yaml]
+          parameters:
+            - { name: region, value: '{{region}}' }
+      destination: { server: '{{cluster}}', namespace: talentbridge }
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions: [CreateNamespace=true, ServerSideApply=true]

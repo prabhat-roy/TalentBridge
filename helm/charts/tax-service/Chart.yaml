@@ -1,0 +1,7 @@
+apiVersion: v2
+name: tax-service
+description: Per-country statutory tax engine (IN/US/UK/EU/UAE/SG); pluggable rules
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

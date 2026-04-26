@@ -1,0 +1,31 @@
+- rule: Bulk employee PII export
+  desc: Detects suspicious large outbound PII export from core-hr / payroll workloads.
+  condition: >
+    evt.type=write and fd.name endswith ".csv" and
+    container and k8s_ns_name in (talentbridge-core-hr, talentbridge-payroll) and
+    evt.buflen > 10485760
+  output: "Large PII CSV write: %container.name %fd.name %evt.buflen bytes"
+  priority: WARNING
+  tags: [pii, talentbridge]
+
+- rule: Payslip signing key access from non-payroll pod
+  desc: Only the payroll-service SA may invoke transit/sign/talentbridge-payslip.
+  condition: >
+    fd.name endswith "/v1/transit/sign/talentbridge-payslip" and
+    not k8s.pod.label.app.kubernetes.io/name in (payroll-service, disbursement-service)
+  output: "Unauthorised payslip signing key access: %container.name"
+  priority: CRITICAL
+  tags: [payroll, talentbridge]
+
+- rule: Cross-region database connection from PII workload
+  desc: Detects PII workload connecting to a database hostname not in its region.
+  condition: >
+    evt.type=connect and container and
+    k8s.pod.label.talentbridge.io/data-class="employee-pii" and
+    not fd.sip in (allowed_in_region_db_cidrs)
+  output: "Cross-region DB connect from PII pod: %container.name -> %fd.sip"
+  priority: CRITICAL
+  tags: [residency, talentbridge]
+
+- list: allowed_in_region_db_cidrs
+  items: ["10.40.0.0/16","10.41.0.0/16","10.42.0.0/16","10.50.0.0/16","10.51.0.0/16","10.52.0.0/16","10.70.0.0/16","10.71.0.0/16","10.72.0.0/16"]

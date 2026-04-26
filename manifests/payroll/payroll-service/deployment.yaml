@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payroll-service
+  namespace: talentbridge-payroll
+  labels:
+    app.kubernetes.io/name: payroll-service
+    app.kubernetes.io/part-of: talentbridge
+    talentbridge.io/domain: payroll
+    talentbridge.io/data-class: payroll-pii
+    talentbridge.io/deployment-strategy: blue-green
+spec:
+  replicas: 4
+  selector: { matchLabels: { app.kubernetes.io/name: payroll-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: payroll-service, talentbridge.io/data-class: payroll-pii, talentbridge.io/domain: payroll } }
+    spec:
+      serviceAccountName: payroll-service
+      securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000 }
+      containers:
+        - name: payroll-service
+          image: harbor.talentbridge.internal/talentbridge/payroll-service:latest
+          ports: [{ containerPort: 50500, name: http }]
+          env:
+            - { name: MONEY_TYPE, value: BigDecimal }
+            - { name: PAYROLL_DRY_RUN_REQUIRED, value: "true" }
+          envFrom: [{ configMapRef: { name: payroll-service } }]
+          livenessProbe:  { httpGet: { path: /healthz, port: 50500 }, initialDelaySeconds: 30 }
+          readinessProbe: { httpGet: { path: /healthz, port: 50500 }, initialDelaySeconds: 10 }
+          resources: { requests: { cpu: 500m, memory: 1Gi }, limits: { cpu: 4000m, memory: 4Gi } }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: overtime-service
+description: Overtime accrual & approval (statutory rules per country)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

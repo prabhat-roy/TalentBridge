@@ -1,0 +1,19 @@
+image: { repository: talentbridge/document-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 3
+domain: onboarding
+service: { type: ClusterIP, port: 50401, targetPort: 50401 }
+resources: { requests: { cpu: 200m, memory: 256Mi }, limits: { cpu: 1500m, memory: 1Gi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50401 }, initialDelaySeconds: 15, periodSeconds: 20 }
+  readiness: { httpGet: { path: /healthz, port: 50401 }, initialDelaySeconds: 5,  periodSeconds: 10 }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: document-service, app.kubernetes.io/part-of: talentbridge, talentbridge.io/domain: onboarding, talentbridge.io/data-class: employee-pii }
+podAnnotations: {}
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000, seccompProfile: { type: RuntimeDefault } }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env: []
+envFrom: []
+config: { LOG_LEVEL: info, ENCRYPTION_MODE: aes-256-gcm }
+region: ""
+dataResidencyClass: pii-regional-strict
+cloud: { provider: "", storageClass: "", ingressClass: "" }

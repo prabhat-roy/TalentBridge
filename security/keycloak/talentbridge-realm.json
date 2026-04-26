@@ -1,0 +1,44 @@
+{
+  "realm": "talentbridge",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "rememberMe": true,
+  "verifyEmail": true,
+  "resetPasswordAllowed": true,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 5,
+  "passwordPolicy": "length(14) and specialChars(1) and upperCase(1) and digits(1) and notUsername and passwordHistory(8)",
+  "otpPolicyType": "totp",
+  "otpPolicyAlgorithm": "HmacSHA256",
+  "otpPolicyDigits": 6,
+  "webAuthnPolicyRpEntityName": "TalentBridge",
+  "identityProviders": [
+    { "alias": "azuread-saml",   "providerId": "saml" },
+    { "alias": "okta-oidc",      "providerId": "oidc" },
+    { "alias": "google-workspace", "providerId": "google" }
+  ],
+  "clients": [
+    { "clientId": "employee-portal", "publicClient": true,  "redirectUris": ["https://talentbridge.com/*"] },
+    { "clientId": "manager-portal",  "publicClient": false, "redirectUris": ["https://manager.talentbridge.com/*"] },
+    { "clientId": "hr-admin-portal", "publicClient": false, "redirectUris": ["https://hr.talentbridge.com/*"], "webOrigins": ["+"], "defaultClientScopes": ["mfa-required"] },
+    { "clientId": "mobile-app",      "publicClient": true }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "employee" },
+      { "name": "manager" },
+      { "name": "hr-admin" },
+      { "name": "payroll-admin" },
+      { "name": "compliance-auditor" },
+      { "name": "system-admin" }
+    ]
+  }
+}

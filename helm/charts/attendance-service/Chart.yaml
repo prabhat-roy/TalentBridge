@@ -1,0 +1,7 @@
+apiVersion: v2
+name: attendance-service
+description: Punch in/out, biometric/QR/geo
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies: [{ name: lib-talentbridge, version: 0.1.0, repository: file://../_lib-talentbridge }]

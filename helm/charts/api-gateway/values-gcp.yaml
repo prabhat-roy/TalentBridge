@@ -1,0 +1,21 @@
+# GCP overlay for api-gateway. Multi-region for data residency:
+# - europe-west4 (EU)
+# - asia-south1  (India)
+# - us-east4     (US)
+cloud:
+  provider: gcp
+  storageClass: pd-balanced
+  ingressClass: gce
+
+region: europe-west4
+
+serviceAccount:
+  annotations:
+    iam.gke.io/gcp-service-account: talentbridge-api-gateway@{{ .Values.gcp.project }}.iam.gserviceaccount.com
+
+podAnnotations:
+  cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+
+envFrom:
+  - secretRef:
+      name: api-gateway-gcp-secrets

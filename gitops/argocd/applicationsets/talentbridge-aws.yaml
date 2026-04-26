@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata: { name: talentbridge-aws, namespace: argocd }
+spec:
+  generators:
+    # Cartesian product: every chart × every residency region (eu/in/us).
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/prabhat-roy/TalentBridge.git
+              revision: HEAD
+              directories:
+                - path: helm/charts/*
+                - path: helm/charts/_*
+                  exclude: true
+          - list:
+              elements:
+                - { region: eu, cluster: 'https://eks-eu.talentbridge.internal' }
+                - { region: in, cluster: 'https://eks-in.talentbridge.internal' }
+                - { region: us, cluster: 'https://eks-us.talentbridge.internal' }
+  template:
+    metadata:
+      name: '{{path.basename}}-aws-{{region}}'
+      labels: { cloud: aws, region: '{{region}}', talentbridge.io/managed-by: argocd }
+    spec:
+      project: talentbridge
+      source:
+        repoURL: https://github.com/prabhat-roy/TalentBridge.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles: [values.yaml, values-aws.yaml]
+          parameters:
+            - { name: region, value: '{{region}}' }
+      destination: { server: '{{cluster}}', namespace: talentbridge }
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions: [CreateNamespace=true, ServerSideApply=true]

@@ -1,0 +1,21 @@
+# AWS overlay for api-gateway. Multi-region per data residency:
+# - eu-west-1   (EU employees)
+# - ap-south-1  (India employees)
+# - us-east-1   (US employees)
+cloud:
+  provider: aws
+  storageClass: gp3
+  ingressClass: alb
+
+region: eu-west-1
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/talentbridge-api-gateway
+
+podAnnotations:
+  iam.amazonaws.com/role: talentbridge-api-gateway
+
+envFrom:
+  - secretRef:
+      name: api-gateway-aws-secrets

@@ -1,0 +1,15 @@
+# Scale payroll workers based on RabbitMQ queue depth (delayed jobs / payroll runs).
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata: { name: payroll-runner, namespace: talentbridge }
+spec:
+  scaleTargetRef: { name: payroll-service }
+  minReplicaCount: 4
+  maxReplicaCount: 50
+  triggers:
+    - type: rabbitmq
+      metadata:
+        host: amqp://talentbridge:secret@rabbitmq.messaging:5672
+        queueName: payroll.runs.scheduled
+        mode: QueueLength
+        value: "10"

@@ -1,0 +1,76 @@
+# Per-domain namespaces — Pod Security Standard "restricted".
+# 17 HCM domains + cluster-wide platform namespace.
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: talentbridge
+  labels: { talentbridge.io/domain: platform-cluster, pod-security.kubernetes.io/enforce: restricted }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-platform, labels: { talentbridge.io/domain: platform, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-identity, labels: { talentbridge.io/domain: identity, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-core-hr, labels: { talentbridge.io/domain: core-hr, pod-security.kubernetes.io/enforce: restricted, talentbridge.io/data-class: employee-pii } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-recruitment, labels: { talentbridge.io/domain: recruitment, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-onboarding, labels: { talentbridge.io/domain: onboarding, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-payroll, labels: { talentbridge.io/domain: payroll, pod-security.kubernetes.io/enforce: restricted, talentbridge.io/data-class: payroll-pii } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-time, labels: { talentbridge.io/domain: time, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-performance, labels: { talentbridge.io/domain: performance, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-learning, labels: { talentbridge.io/domain: learning, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-compensation, labels: { talentbridge.io/domain: compensation, pod-security.kubernetes.io/enforce: restricted, talentbridge.io/data-class: payroll-pii } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-workforce-planning, labels: { talentbridge.io/domain: workforce-planning, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-experience, labels: { talentbridge.io/domain: experience, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-offboarding, labels: { talentbridge.io/domain: offboarding, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-compliance, labels: { talentbridge.io/domain: compliance, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-occupational-health, labels: { talentbridge.io/domain: occupational-health, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-analytics, labels: { talentbridge.io/domain: analytics, pod-security.kubernetes.io/enforce: restricted } }
+---
+apiVersion: v1
+kind: Namespace
+metadata: { name: talentbridge-integrations, labels: { talentbridge.io/domain: integrations, pod-security.kubernetes.io/enforce: restricted } }

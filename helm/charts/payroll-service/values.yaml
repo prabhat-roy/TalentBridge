@@ -1,0 +1,21 @@
+image: { repository: talentbridge/payroll-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 4
+domain: payroll
+service: { type: ClusterIP, port: 50500, targetPort: 50500 }
+resources: { requests: { cpu: 500m, memory: 1Gi }, limits: { cpu: 4000m, memory: 4Gi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50500 }, initialDelaySeconds: 30, periodSeconds: 20 }
+  readiness: { httpGet: { path: /healthz, port: 50500 }, initialDelaySeconds: 10, periodSeconds: 10 }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: payroll-service, app.kubernetes.io/part-of: talentbridge, talentbridge.io/domain: payroll, talentbridge.io/data-class: payroll-pii, talentbridge.io/deployment-strategy: blue-green }
+podAnnotations: {}
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000, seccompProfile: { type: RuntimeDefault } }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env:
+  - { name: MONEY_TYPE, value: BigDecimal }
+  - { name: PAYROLL_DRY_RUN_REQUIRED, value: "true" }
+envFrom: []
+config: { LOG_LEVEL: info, JVM_OPTS: "-Xms512m -Xmx3g -XX:+UseG1GC" }
+region: ""
+dataResidencyClass: pii-regional-strict
+cloud: { provider: "", storageClass: "", ingressClass: "" }

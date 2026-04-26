@@ -1,0 +1,4 @@
+cloud: { provider: aws, storageClass: gp3, ingressClass: alb }
+region: eu-west-1
+serviceAccount: { annotations: { eks.amazonaws.com/role-arn: arn:aws:iam::{{ .Values.aws.accountId }}:role/talentbridge-provisioning-service } }
+envFrom: [{ secretRef: { name: provisioning-service-aws-secrets } }]

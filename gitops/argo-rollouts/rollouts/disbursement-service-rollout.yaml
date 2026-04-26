@@ -1,0 +1,18 @@
+# Disbursement is BLUE-GREEN — bank file generation is non-reversible.
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata: { name: disbursement-service, namespace: talentbridge }
+spec:
+  replicas: 3
+  strategy:
+    blueGreen:
+      activeService: disbursement-service-active
+      previewService: disbursement-service-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 600
+  selector: { matchLabels: { app.kubernetes.io/name: disbursement-service } }
+  template:
+    metadata: { labels: { app.kubernetes.io/name: disbursement-service } }
+    spec:
+      containers:
+        - { name: disbursement-service, image: harbor.talentbridge.internal/talentbridge/disbursement-service, ports: [{ containerPort: 50504 }] }

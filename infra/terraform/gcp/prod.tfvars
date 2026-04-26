@@ -1,0 +1,5 @@
+gcp_project = "talentbridge-prod"
+environment = "prod"
+region_eu   = "europe-west4"
+region_in   = "asia-south1"
+region_us   = "us-east4"

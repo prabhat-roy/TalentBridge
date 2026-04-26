@@ -1,0 +1,21 @@
+# Applied ONLY to EU clusters (eu-west-1 / europe-west4 / westeurope).
+# Forbids egress from PII-bearing pods to any non-EU CIDR.
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: tb-eu-pii-residency
+  labels: { talentbridge.io/region: eu, talentbridge.io/policy: residency }
+spec:
+  endpointSelector:
+    matchLabels:
+      talentbridge.io/data-class: employee-pii
+  egress:
+    # Allow in-cluster traffic only (default Cilium pod CIDR for EU clusters).
+    - toCIDRSet:
+        - cidr: 10.40.0.0/16    # AWS eu-west-1 VPC
+        - cidr: 10.50.0.0/16    # GCP europe-west4 subnet
+        - cidr: 10.70.0.0/16    # Azure westeurope vnet
+    # Permit DNS to kube-system
+    - toEndpoints: [{ matchLabels: { k8s-app: kube-dns, io.kubernetes.pod.namespace: kube-system } }]
+      toPorts: [{ ports: [{ port: "53", protocol: UDP }] }]
+  # Implicit deny for everything else — ap-south-1, us-east-1, etc. are NOT in CIDR set.

@@ -1,0 +1,5 @@
+apiVersion: v2
+name: lib-talentbridge
+description: Shared TalentBridge Helm template library (deployment/service/serviceaccount/_helpers)
+type: library
+version: 0.1.0

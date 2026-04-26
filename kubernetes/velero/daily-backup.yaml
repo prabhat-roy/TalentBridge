@@ -1,0 +1,9 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata: { name: talentbridge-daily, namespace: velero }
+spec:
+  schedule: "0 2 * * *"
+  template:
+    includedNamespaces: [talentbridge, talentbridge-payroll, talentbridge-core-hr]
+    snapshotVolumes: true
+    ttl: 720h0m0s

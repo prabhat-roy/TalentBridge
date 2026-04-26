@@ -1,0 +1,19 @@
+image: { repository: talentbridge/timesheet-service, tag: "", pullPolicy: IfNotPresent }
+replicaCount: 2
+domain: time
+service: { type: ClusterIP, port: 50604, targetPort: 50604 }
+resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 1000m, memory: 512Mi } }
+probes:
+  liveness:  { httpGet: { path: /healthz, port: 50604 }, initialDelaySeconds: 15, periodSeconds: 20 }
+  readiness: { httpGet: { path: /healthz, port: 50604 }, initialDelaySeconds: 5,  periodSeconds: 10 }
+serviceAccount: { create: true, annotations: {} }
+podLabels: { app.kubernetes.io/name: timesheet-service, app.kubernetes.io/part-of: talentbridge, talentbridge.io/domain: time }
+podAnnotations: {}
+securityContext: { runAsNonRoot: true, runAsUser: 1000, fsGroup: 1000, seccompProfile: { type: RuntimeDefault } }
+containerSecurityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+env: []
+envFrom: []
+config: { LOG_LEVEL: info }
+region: ""
+dataResidencyClass: regional
+cloud: { provider: "", storageClass: "", ingressClass: "" }

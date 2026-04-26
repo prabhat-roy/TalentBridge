@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata: { name: talentbridge-azure, namespace: argocd }
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/prabhat-roy/TalentBridge.git
+              revision: HEAD
+              directories:
+                - path: helm/charts/*
+                - path: helm/charts/_*
+                  exclude: true
+          - list:
+              elements:
+                - { region: eu, cluster: 'https://aks-eu.talentbridge.internal' }
+                - { region: in, cluster: 'https://aks-in.talentbridge.internal' }
+                - { region: us, cluster: 'https://aks-us.talentbridge.internal' }
+  template:
+    metadata:
+      name: '{{path.basename}}-azure-{{region}}'
+      labels: { cloud: azure, region: '{{region}}', talentbridge.io/managed-by: argocd }
+    spec:
+      project: talentbridge
+      source:
+        repoURL: https://github.com/prabhat-roy/TalentBridge.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles: [values.yaml, values-azure.yaml]
+          parameters:
+            - { name: region, value: '{{region}}' }
+      destination: { server: '{{cluster}}', namespace: talentbridge }
+      syncPolicy:
+        automated: { prune: true, selfHeal: true }
+        syncOptions: [CreateNamespace=true, ServerSideApply=true]
