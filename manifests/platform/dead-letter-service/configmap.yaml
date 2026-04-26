@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dead-letter-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: dead-letter-service, talentbridge.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51010"

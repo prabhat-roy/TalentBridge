@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: i18n-service
+  namespace: talentbridge
+  labels: { app.kubernetes.io/name: i18n-service, talentbridge.io/domain: platform }
+data:
+  LOG_LEVEL: info
+  PORT: "51012"
