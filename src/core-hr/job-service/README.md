@@ -1,5 +1,5 @@
-# job-service
+﻿# job-service
 
 Job catalogue, families, levels.
 
-**Domain:** `core-hr` · **Language:** java · **Port:** 50013
+Domain: `core-hr` Â· Language: java Â· Port: 50013

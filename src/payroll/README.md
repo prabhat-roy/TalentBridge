@@ -1,6 +1,6 @@
-# payroll domain
+﻿# payroll domain
 
-Multi-country payroll engine. **All money handled as `BigDecimal` — never `float`/`double`.**
+Multi-country payroll engine. All money handled as `BigDecimal` â€” never `float`/`double`.
 
 | Service | Language | Port | Description |
 |---|---|---|---|
@@ -12,9 +12,9 @@ Multi-country payroll engine. **All money handled as `BigDecimal` — never `flo
 
 ## Saga
 
-`PayrollRunSaga` (in `workflow/temporal/`) orchestrates: calc → review → approve → disburse → reconcile, with compensating actions on each step.
+`PayrollRunSaga` (in `workflow/temporal/`) orchestrates: calc â†’ review â†’ approve â†’ disburse â†’ reconcile, with compensating actions on each step.
 
 ## Compliance
 
-- `security/opa/policies/payroll-bigdecimal-only.rego` — blocks float/double in payroll modules
-- `security/opa/policies/tax-engine-per-country-required.rego` — country code mandatory on every tax call
+- `security/opa/policies/payroll-bigdecimal-only.rego` â€” blocks float/double in payroll modules
+- `security/opa/policies/tax-engine-per-country-required.rego` â€” country code mandatory on every tax call

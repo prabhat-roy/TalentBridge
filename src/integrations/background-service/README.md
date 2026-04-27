@@ -1,8 +1,8 @@
-# background-service
+﻿# background-service
 
-Service in the **integrations** domain of TalentBridge.
+Service in the integrations domain of TalentBridge.
 
-**Language:** Go · **Port:** 50323
+Language: Go Â· Port: 50323
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/background-service/](../../../helm/charts/background-service/) — Helm chart
-- [manifests/integrations/background-service/](../../../manifests/integrations/background-service/) — Raw K8s manifests
+- [helm/charts/background-service/](../../../helm/charts/background-service/) â€” Helm chart
+- [manifests/integrations/background-service/](../../../manifests/integrations/background-service/) â€” Raw K8s manifests

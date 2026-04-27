@@ -1,8 +1,8 @@
-# certification-service
+﻿# certification-service
 
-Service in the **learning** domain of TalentBridge.
+Service in the learning domain of TalentBridge.
 
-**Language:** Go · **Port:** 50162
+Language: Go Â· Port: 50162
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/certification-service/](../../../helm/charts/certification-service/) — Helm chart
-- [manifests/learning/certification-service/](../../../manifests/learning/certification-service/) — Raw K8s manifests
+- [helm/charts/certification-service/](../../../helm/charts/certification-service/) â€” Helm chart
+- [manifests/learning/certification-service/](../../../manifests/learning/certification-service/) â€” Raw K8s manifests

@@ -1,5 +1,5 @@
-# interview-service
+﻿# interview-service
 
 Interview scheduling, scorecards.
 
-**Domain:** `recruitment` · **Language:** java · **Port:** 50022
+Domain: `recruitment` Â· Language: java Â· Port: 50022

@@ -1,8 +1,8 @@
-# attrition-predictor
+﻿# attrition-predictor
 
-Service in the **analytics** domain of TalentBridge.
+Service in the analytics domain of TalentBridge.
 
-**Language:** Go · **Port:** 50301
+Language: Go Â· Port: 50301
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/attrition-predictor/](../../../helm/charts/attrition-predictor/) — Helm chart
-- [manifests/analytics/attrition-predictor/](../../../manifests/analytics/attrition-predictor/) — Raw K8s manifests
+- [helm/charts/attrition-predictor/](../../../helm/charts/attrition-predictor/) â€” Helm chart
+- [manifests/analytics/attrition-predictor/](../../../manifests/analytics/attrition-predictor/) â€” Raw K8s manifests

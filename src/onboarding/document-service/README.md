@@ -1,5 +1,5 @@
-# document-service
+﻿# document-service
 
 Document collection, OCR, encrypted vault (employment contracts, offer letters, ID).
 
-**Domain:** `onboarding` · **Language:** rust · **Port:** 50031
+Domain: `onboarding` Â· Language: rust Â· Port: 50031

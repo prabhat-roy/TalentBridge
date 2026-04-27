@@ -1,8 +1,8 @@
-# knowledge-transfer
+﻿# knowledge-transfer
 
-Service in the **offboarding** domain of TalentBridge.
+Service in the offboarding domain of TalentBridge.
 
-**Language:** Go · **Port:** 50242
+Language: Go Â· Port: 50242
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/knowledge-transfer/](../../../helm/charts/knowledge-transfer/) — Helm chart
-- [manifests/offboarding/knowledge-transfer/](../../../manifests/offboarding/knowledge-transfer/) — Raw K8s manifests
+- [helm/charts/knowledge-transfer/](../../../helm/charts/knowledge-transfer/) â€” Helm chart
+- [manifests/offboarding/knowledge-transfer/](../../../manifests/offboarding/knowledge-transfer/) â€” Raw K8s manifests

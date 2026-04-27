@@ -1,8 +1,8 @@
-# people-analytics
+﻿# people-analytics
 
-Service in the **analytics** domain of TalentBridge.
+Service in the analytics domain of TalentBridge.
 
-**Language:** Go · **Port:** 50300
+Language: Go Â· Port: 50300
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/people-analytics/](../../../helm/charts/people-analytics/) — Helm chart
-- [manifests/analytics/people-analytics/](../../../manifests/analytics/people-analytics/) — Raw K8s manifests
+- [helm/charts/people-analytics/](../../../helm/charts/people-analytics/) â€” Helm chart
+- [manifests/analytics/people-analytics/](../../../manifests/analytics/people-analytics/) â€” Raw K8s manifests

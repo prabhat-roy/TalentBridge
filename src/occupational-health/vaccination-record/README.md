@@ -1,8 +1,8 @@
-# vaccination-record
+﻿# vaccination-record
 
-Service in the **occupational-health** domain of TalentBridge.
+Service in the occupational-health domain of TalentBridge.
 
-**Language:** Go · **Port:** 50283
+Language: Go Â· Port: 50283
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/vaccination-record/](../../../helm/charts/vaccination-record/) — Helm chart
-- [manifests/occupational-health/vaccination-record/](../../../manifests/occupational-health/vaccination-record/) — Raw K8s manifests
+- [helm/charts/vaccination-record/](../../../helm/charts/vaccination-record/) â€” Helm chart
+- [manifests/occupational-health/vaccination-record/](../../../manifests/occupational-health/vaccination-record/) â€” Raw K8s manifests

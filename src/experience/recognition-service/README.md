@@ -1,8 +1,8 @@
-# recognition-service
+﻿# recognition-service
 
-Service in the **experience** domain of TalentBridge.
+Service in the experience domain of TalentBridge.
 
-**Language:** Go · **Port:** 50222
+Language: Go Â· Port: 50222
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/recognition-service/](../../../helm/charts/recognition-service/) — Helm chart
-- [manifests/experience/recognition-service/](../../../manifests/experience/recognition-service/) — Raw K8s manifests
+- [helm/charts/recognition-service/](../../../helm/charts/recognition-service/) â€” Helm chart
+- [manifests/experience/recognition-service/](../../../manifests/experience/recognition-service/) â€” Raw K8s manifests

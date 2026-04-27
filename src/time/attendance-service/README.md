@@ -1,8 +1,8 @@
-# attendance-service
+﻿# attendance-service
 
-Service in the **time** domain of TalentBridge.
+Service in the time domain of TalentBridge.
 
-**Language:** Go · **Port:** 50120
+Language: Go Â· Port: 50120
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/attendance-service/](../../../helm/charts/attendance-service/) — Helm chart
-- [manifests/time/attendance-service/](../../../manifests/time/attendance-service/) — Raw K8s manifests
+- [helm/charts/attendance-service/](../../../helm/charts/attendance-service/) â€” Helm chart
+- [manifests/time/attendance-service/](../../../manifests/time/attendance-service/) â€” Raw K8s manifests

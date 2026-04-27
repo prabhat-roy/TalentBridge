@@ -1,8 +1,8 @@
-# idp-service
+﻿# idp-service
 
-Service in the **learning** domain of TalentBridge.
+Service in the learning domain of TalentBridge.
 
-**Language:** Go · **Port:** 50164
+Language: Go Â· Port: 50164
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/idp-service/](../../../helm/charts/idp-service/) — Helm chart
-- [manifests/learning/idp-service/](../../../manifests/learning/idp-service/) — Raw K8s manifests
+- [helm/charts/idp-service/](../../../helm/charts/idp-service/) â€” Helm chart
+- [manifests/learning/idp-service/](../../../manifests/learning/idp-service/) â€” Raw K8s manifests

@@ -1,5 +1,5 @@
-# salary-service
+﻿# salary-service
 
 Salary structure, hikes, prorating. BigDecimal money.
 
-**Domain:** `payroll` · **Language:** java · **Port:** 50041
+Domain: `payroll` Â· Language: java Â· Port: 50041

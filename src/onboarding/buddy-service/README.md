@@ -1,5 +1,5 @@
-# buddy-service
+﻿# buddy-service
 
 Buddy assignment, check-ins.
 
-**Domain:** `onboarding` · **Language:** node · **Port:** 50033
+Domain: `onboarding` Â· Language: node Â· Port: 50033

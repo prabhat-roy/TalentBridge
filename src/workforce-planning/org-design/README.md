@@ -1,8 +1,8 @@
-# org-design
+﻿# org-design
 
-Service in the **workforce-planning** domain of TalentBridge.
+Service in the workforce-planning domain of TalentBridge.
 
-**Language:** Go · **Port:** 50203
+Language: Go Â· Port: 50203
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/org-design/](../../../helm/charts/org-design/) — Helm chart
-- [manifests/workforce-planning/org-design/](../../../manifests/workforce-planning/org-design/) — Raw K8s manifests
+- [helm/charts/org-design/](../../../helm/charts/org-design/) â€” Helm chart
+- [manifests/workforce-planning/org-design/](../../../manifests/workforce-planning/org-design/) â€” Raw K8s manifests

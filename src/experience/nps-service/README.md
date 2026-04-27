@@ -1,8 +1,8 @@
-# nps-service
+﻿# nps-service
 
-Service in the **experience** domain of TalentBridge.
+Service in the experience domain of TalentBridge.
 
-**Language:** Go · **Port:** 50224
+Language: Go Â· Port: 50224
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/nps-service/](../../../helm/charts/nps-service/) — Helm chart
-- [manifests/experience/nps-service/](../../../manifests/experience/nps-service/) — Raw K8s manifests
+- [helm/charts/nps-service/](../../../helm/charts/nps-service/) â€” Helm chart
+- [manifests/experience/nps-service/](../../../manifests/experience/nps-service/) â€” Raw K8s manifests

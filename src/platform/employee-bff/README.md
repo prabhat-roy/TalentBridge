@@ -1,9 +1,9 @@
-# employee-bff
+﻿# employee-bff
 
 Employee self-service BFF (React frontend backend).
 
-**Domain:** `platform` · **Language:** go · **Port:** 50001
+Domain: `platform` Â· Language: go Â· Port: 50001
 
 ## Endpoints
 
-- `GET /healthz` — health check
+- `GET /healthz` â€” health check

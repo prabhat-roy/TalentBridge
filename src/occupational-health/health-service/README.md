@@ -1,8 +1,8 @@
-# health-service
+﻿# health-service
 
-Service in the **occupational-health** domain of TalentBridge.
+Service in the occupational-health domain of TalentBridge.
 
-**Language:** Go · **Port:** 50280
+Language: Go Â· Port: 50280
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/health-service/](../../../helm/charts/health-service/) — Helm chart
-- [manifests/occupational-health/health-service/](../../../manifests/occupational-health/health-service/) — Raw K8s manifests
+- [helm/charts/health-service/](../../../helm/charts/health-service/) â€” Helm chart
+- [manifests/occupational-health/health-service/](../../../manifests/occupational-health/health-service/) â€” Raw K8s manifests

@@ -1,8 +1,8 @@
-# diversity-analytics
+﻿# diversity-analytics
 
-Service in the **analytics** domain of TalentBridge.
+Service in the analytics domain of TalentBridge.
 
-**Language:** Go · **Port:** 50302
+Language: Go Â· Port: 50302
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/diversity-analytics/](../../../helm/charts/diversity-analytics/) — Helm chart
-- [manifests/analytics/diversity-analytics/](../../../manifests/analytics/diversity-analytics/) — Raw K8s manifests
+- [helm/charts/diversity-analytics/](../../../helm/charts/diversity-analytics/) â€” Helm chart
+- [manifests/analytics/diversity-analytics/](../../../manifests/analytics/diversity-analytics/) â€” Raw K8s manifests

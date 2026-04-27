@@ -1,9 +1,9 @@
-# graphql-gateway
+﻿# graphql-gateway
 
 Federated GraphQL gateway across BFFs.
 
-**Domain:** `platform` · **Language:** go · **Port:** 50004
+Domain: `platform` Â· Language: go Â· Port: 50004
 
 ## Endpoints
 
-- `GET /healthz` — health check
+- `GET /healthz` â€” health check

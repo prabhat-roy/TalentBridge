@@ -1,8 +1,8 @@
-# alumni-service
+﻿# alumni-service
 
-Service in the **offboarding** domain of TalentBridge.
+Service in the offboarding domain of TalentBridge.
 
-**Language:** Go · **Port:** 50243
+Language: Go Â· Port: 50243
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/alumni-service/](../../../helm/charts/alumni-service/) — Helm chart
-- [manifests/offboarding/alumni-service/](../../../manifests/offboarding/alumni-service/) — Raw K8s manifests
+- [helm/charts/alumni-service/](../../../helm/charts/alumni-service/) â€” Helm chart
+- [manifests/offboarding/alumni-service/](../../../manifests/offboarding/alumni-service/) â€” Raw K8s manifests

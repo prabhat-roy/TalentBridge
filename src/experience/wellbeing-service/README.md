@@ -1,8 +1,8 @@
-# wellbeing-service
+﻿# wellbeing-service
 
-Service in the **experience** domain of TalentBridge.
+Service in the experience domain of TalentBridge.
 
-**Language:** Go · **Port:** 50223
+Language: Go Â· Port: 50223
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/wellbeing-service/](../../../helm/charts/wellbeing-service/) — Helm chart
-- [manifests/experience/wellbeing-service/](../../../manifests/experience/wellbeing-service/) — Raw K8s manifests
+- [helm/charts/wellbeing-service/](../../../helm/charts/wellbeing-service/) â€” Helm chart
+- [manifests/experience/wellbeing-service/](../../../manifests/experience/wellbeing-service/) â€” Raw K8s manifests

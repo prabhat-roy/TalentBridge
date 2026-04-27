@@ -1,5 +1,5 @@
-# position-service
+﻿# position-service
 
 Positions, headcount slots, FTE.
 
-**Domain:** `core-hr` · **Language:** java · **Port:** 50012
+Domain: `core-hr` Â· Language: java Â· Port: 50012

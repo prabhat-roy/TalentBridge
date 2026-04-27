@@ -1,5 +1,5 @@
-# job-posting-service
+﻿# job-posting-service
 
 Job board posting + syndication.
 
-**Domain:** `recruitment` · **Language:** java · **Port:** 50020
+Domain: `recruitment` Â· Language: java Â· Port: 50020

@@ -1,8 +1,8 @@
-# overtime-service
+﻿# overtime-service
 
-Service in the **time** domain of TalentBridge.
+Service in the time domain of TalentBridge.
 
-**Language:** Go · **Port:** 50123
+Language: Go Â· Port: 50123
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/overtime-service/](../../../helm/charts/overtime-service/) — Helm chart
-- [manifests/time/overtime-service/](../../../manifests/time/overtime-service/) — Raw K8s manifests
+- [helm/charts/overtime-service/](../../../helm/charts/overtime-service/) â€” Helm chart
+- [manifests/time/overtime-service/](../../../manifests/time/overtime-service/) â€” Raw K8s manifests

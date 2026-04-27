@@ -1,8 +1,8 @@
-# incident-service
+﻿# incident-service
 
-Service in the **occupational-health** domain of TalentBridge.
+Service in the occupational-health domain of TalentBridge.
 
-**Language:** Go · **Port:** 50281
+Language: Go Â· Port: 50281
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/incident-service/](../../../helm/charts/incident-service/) — Helm chart
-- [manifests/occupational-health/incident-service/](../../../manifests/occupational-health/incident-service/) — Raw K8s manifests
+- [helm/charts/incident-service/](../../../helm/charts/incident-service/) â€” Helm chart
+- [manifests/occupational-health/incident-service/](../../../manifests/occupational-health/incident-service/) â€” Raw K8s manifests

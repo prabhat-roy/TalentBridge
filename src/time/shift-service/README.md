@@ -1,8 +1,8 @@
-# shift-service
+﻿# shift-service
 
-Service in the **time** domain of TalentBridge.
+Service in the time domain of TalentBridge.
 
-**Language:** Go · **Port:** 50121
+Language: Go Â· Port: 50121
 
 ## Run locally
 
@@ -12,9 +12,9 @@ make run
 
 ## Endpoints
 
-- `GET /healthz` — health check, returns `{ "status": "ok" }`
+- `GET /healthz` â€” health check, returns `{ "status": "ok" }`
 
 ## See also
 
-- [helm/charts/shift-service/](../../../helm/charts/shift-service/) — Helm chart
-- [manifests/time/shift-service/](../../../manifests/time/shift-service/) — Raw K8s manifests
+- [helm/charts/shift-service/](../../../helm/charts/shift-service/) â€” Helm chart
+- [manifests/time/shift-service/](../../../manifests/time/shift-service/) â€” Raw K8s manifests
