@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.compliance.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/compliance/v1;compliance_v1";
+import "google/protobuf/timestamp.proto";
+
+message ComplianceCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ComplianceUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ComplianceDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

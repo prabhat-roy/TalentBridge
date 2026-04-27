@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.performance.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/performance/v1;performance_v1";
+import "google/protobuf/timestamp.proto";
+
+message PerformanceCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message PerformanceUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message PerformanceDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

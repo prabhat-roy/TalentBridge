@@ -1,0 +1,20 @@
+﻿{
+  "name": "talentbridge-postgres-cdc",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres.talentbridge.svc",
+    "database.port": "5432",
+    "database.user": "debezium",
+    "database.password": "${file:/secrets/debezium-pg.password:password}",
+    "database.dbname": "talentbridge",
+    "topic.prefix": "talentbridge.cdc",
+    "plugin.name": "pgoutput",
+    "publication.autocreate.mode": "filtered",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka.talentbridge.svc:9092",
+    "schema.history.internal.kafka.topic": "talentbridge.cdc.schema-history",
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://schema-registry.talentbridge.svc:8081",
+    "value.converter.schema.registry.url": "http://schema-registry.talentbridge.svc:8081"
+  }
+}

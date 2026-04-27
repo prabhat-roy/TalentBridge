@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.analytics.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/analytics/v1;analytics_v1";
+import "google/protobuf/timestamp.proto";
+
+message AnalyticsCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message AnalyticsUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message AnalyticsDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

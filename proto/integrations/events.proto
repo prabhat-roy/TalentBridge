@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.integrations.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/integrations/v1;integrations_v1";
+import "google/protobuf/timestamp.proto";
+
+message IntegrationsCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message IntegrationsUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message IntegrationsDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

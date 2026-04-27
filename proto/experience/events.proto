@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.experience.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/experience/v1;experience_v1";
+import "google/protobuf/timestamp.proto";
+
+message ExperienceCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ExperienceUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message ExperienceDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

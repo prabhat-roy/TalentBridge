@@ -1,0 +1,38 @@
+﻿syntax = "proto3";
+
+package talentbridge.compensation.v1;
+
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/compensation/v1;compensation_v1";
+option java_multiple_files = true;
+option java_package = "com.talentbridge.compensation.v1";
+
+import "common/types.proto";
+import "google/protobuf/timestamp.proto";
+
+// compensation service for TalentBridge
+service CompensationService {
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc List(ListRequest) returns (ListResponse);
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+message Compensation {
+  string id = 1;
+  string tenant_id = 2;
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  map<string, string> attributes = 5;
+}
+
+message GetRequest    { string id = 1; }
+message GetResponse   { Compensation entity = 1; }
+message ListRequest   { string tenant_id = 1; common.Pagination page = 2; }
+message ListResponse  { repeated Compensation items = 1; common.Pagination page = 2; }
+message CreateRequest { Compensation entity = 1; }
+message CreateResponse{ Compensation entity = 1; }
+message UpdateRequest { Compensation entity = 1; }
+message UpdateResponse{ Compensation entity = 1; }
+message DeleteRequest { string id = 1; }
+message DeleteResponse{ bool ok = 1; }

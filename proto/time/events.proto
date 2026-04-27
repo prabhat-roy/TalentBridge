@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.time.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/time/v1;time_v1";
+import "google/protobuf/timestamp.proto";
+
+message TimeCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message TimeUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message TimeDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.compensation.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/compensation/v1;compensation_v1";
+import "google/protobuf/timestamp.proto";
+
+message CompensationCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message CompensationUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message CompensationDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

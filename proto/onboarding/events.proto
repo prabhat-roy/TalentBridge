@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.onboarding.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/onboarding/v1;onboarding_v1";
+import "google/protobuf/timestamp.proto";
+
+message OnboardingCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message OnboardingUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message OnboardingDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

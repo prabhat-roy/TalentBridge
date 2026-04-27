@@ -1,0 +1,6 @@
+﻿plugins:
+  - { id: tech-radar, config: { url: https://github.com/prabhat-roy/TalentBridge/raw/main/backstage/tech-radar.json } }
+  - { id: lighthouse, config: { baseUrl: https://lhci.talentbridge.internal } }
+  - { id: opencost,   config: { baseUrl: https://opencost.talentbridge.internal } }
+  - { id: argocd,     config: { url: https://argocd.talentbridge.internal, token: "${ARGOCD_TOKEN}" } }
+  - { id: kubernetes, config: { clusters: [{ name: talentbridge-aws, url: https://eks.talentbridge.aws.internal }, { name: talentbridge-gcp, url: https://gke.talentbridge.gcp.internal }, { name: talentbridge-azure, url: https://aks.talentbridge.azure.internal }] } }

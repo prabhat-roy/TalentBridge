@@ -1,0 +1,9 @@
+﻿image: { repository: confluentinc/cp-kafka-connect, tag: 7.7.1 }
+replicas: 3
+config:
+  bootstrap.servers: kafka.talentbridge.svc:9092
+  group.id: talentbridge-connect
+  config.storage.topic: talentbridge.connect.configs
+  offset.storage.topic: talentbridge.connect.offsets
+  status.storage.topic: talentbridge.connect.status
+  plugin.path: /usr/share/connectors,/usr/share/confluent-hub-components

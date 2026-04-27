@@ -1,6 +1,4 @@
-# Api Testing — TalentBridge
-
-API tests — Hurl flow tests + Spectral OpenAPI linting.
-
-> Skeleton placeholder. Content will be added as the project takes shape.
-> See [../README.md](../README.md) for the TalentBridge project overview.
+﻿# API testing for TalentBridge
+- `pact/` — consumer-driven contract test (api-gateway → identity-service) + provider verifier script
+- `hurl/` — version-controlled HTTP test flows (health, auth) + runner
+- `spectral/` — custom OpenAPI ruleset (kebab-case paths, mandatory 4xx schemas) + runner

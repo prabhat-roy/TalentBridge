@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: talentbridge-event-enrichment, namespace: talentbridge }
+spec:
+  deploymentName: talentbridge-flink
+  job:
+    jarURI: s3://talentbridge-flink-jobs/event-enrichment.jar
+    parallelism: 4
+    upgradeMode: savepoint
+    args: ["--source-topic", "talentbridge.cdc.public.events", "--sink-topic", "talentbridge.events.enriched"]

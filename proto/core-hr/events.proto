@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.core_hr.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/core-hr/v1;core_hr_v1";
+import "google/protobuf/timestamp.proto";
+
+message CorehrCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message CorehrUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message CorehrDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }

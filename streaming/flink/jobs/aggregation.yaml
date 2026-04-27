@@ -1,0 +1,10 @@
+﻿apiVersion: flink.apache.org/v1beta1
+kind: FlinkSessionJob
+metadata: { name: talentbridge-aggregation, namespace: talentbridge }
+spec:
+  deploymentName: talentbridge-flink
+  job:
+    jarURI: s3://talentbridge-flink-jobs/aggregation.jar
+    parallelism: 8
+    upgradeMode: savepoint
+    args: ["--source-topic", "talentbridge.events.enriched", "--sink-topic", "talentbridge.metrics.aggregated", "--window", "5m"]

@@ -1,0 +1,9 @@
+﻿apiVersion: chaos-mesh.org/v1alpha1
+kind: DNSChaos
+metadata: { name: talentbridge-dns-error, namespace: chaos-mesh }
+spec:
+  action: error
+  mode: all
+  patterns: ["*.talentbridge.svc.cluster.local"]
+  selector: { namespaces: [talentbridge] }
+  duration: 2m

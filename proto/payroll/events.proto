@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+package talentbridge.payroll.v1;
+option go_package = "github.com/prabhat-roy/TalentBridge/proto/payroll/v1;payroll_v1";
+import "google/protobuf/timestamp.proto";
+
+message PayrollCreatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message PayrollUpdatedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
+message PayrollDeletedEvent { string id = 1; string tenant_id = 2; google.protobuf.Timestamp ts = 3; }
